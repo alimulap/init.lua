@@ -1,0 +1,5 @@
+require("abyss.remap")
+require("abyss.set")
+require("abyss.command")
+require("abyss.neovide")
+print("Abyss > ")
