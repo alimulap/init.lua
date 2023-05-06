@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["close-buffers.vim"] = {
+    loaded = true,
+    path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\close-buffers.vim",
+    url = "https://github.com/Asheq/close-buffers.vim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-buffer",
@@ -114,6 +119,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["lsp-overloads.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lsp-overloads.nvim",
+    url = "https://github.com/Issafalcon/lsp-overloads.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lsp-zero.nvim",
@@ -138,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-jdtls"] = {
+    loaded = true,
+    path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-jdtls",
+    url = "https://github.com/mfussenegger/nvim-jdtls"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -178,6 +193,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\sidebar.nvim",
     url = "https://github.com/sidebar-nvim/sidebar.nvim"
+  },
+  ["telescope-fzy-native.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope-fzy-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

@@ -84,4 +84,6 @@ return require('packer').startup(function(use)
     --use("ray-x/lsp_signature.nvim")
 
     use('Asheq/close-buffers.vim')
+
+    use('nvim-telescope/telescope-fzy-native.nvim')
 end)

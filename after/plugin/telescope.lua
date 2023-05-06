@@ -18,16 +18,36 @@ AbyssDir = function(opts)
     opts = opts or {}
     pickers.new(opts, {
         prompt_title = "Abyss",
-        finder = finders.new_oneshot_job({"powershell.exe", "-Command", "Get-ChildItem -Path ~/Abyss -Directory -Recurse -Depth 3 | Select-Object -ExpandProperty FullName | Format-List"}),
+        --finder = finders.new_oneshot_job({"pwsh.exe", "-Command", "Get-ChildItem -Path ~/Abyss -Directory -Recurse -Depth 3 | Select-Object -ExpandProperty FullName | Format-List"}),
+        finder = finders.new_oneshot_job({"powershell.exe", "-Command", "fd -t d -d 4 . $HOME\\Abyss"}),
         sorter = conf.generic_sorter(opts),
         attach_mappings = function(prompt_bufnr, _)
             actions.select_default:replace(function()
                 actions.close(prompt_bufnr)
                 local selection = action_state.get_selected_entry()
-                vim.cmd('cd ' .. selection[1])
-                vim.cmd('Explore ' .. selection[1])
+                vim.cmd('cd ' .. '~\\Abyss\\' .. selection[1])
+                vim.cmd('Explore ' .. '~\\Abyss\\' .. selection[1])
                 vim.cmd('%bd|e#|bd#')
-                print('')
+            end)
+            return true
+        end,
+    }):find()
+end
+
+AbyssRef = function(opts)
+    opts = opts or {}
+    pickers.new(opts, {
+        prompt_title = "Abyss",
+        --finder = finders.new_oneshot_job({"powershell.exe", "-Command", "Get-ChildItem -Path ~/Abyss -Directory -Recurse -Depth 3 | Select-Object -ExpandProperty FullName | Format-List"}),
+        finder = finders.new_oneshot_job({"powershell.exe", "-Command", "fd -t d -d 4 . $HOME\\Abyss"}),
+        sorter = conf.generic_sorter(opts),
+        attach_mappings = function(prompt_bufnr, _)
+            actions.select_default:replace(function()
+                actions.close(prompt_bufnr)
+                local selection = action_state.get_selected_entry()
+                vim.cmd('vs')
+                vim.cmd('wincmd l')
+                vim.cmd('Explore ' .. selection[1])
             end)
             return true
         end,
@@ -35,5 +55,7 @@ AbyssDir = function(opts)
 end
 
 vim.cmd('command! Cd lua AbyssDir()')
+
+vim.cmd('command! Ref lua AbyssRef()')
 
 

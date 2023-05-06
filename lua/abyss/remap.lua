@@ -33,9 +33,9 @@ vim.keymap.set("n", "\\.", "<C-w>10<")
 
 vim.keymap.set("i", "kj", "<Esc>")
 vim.keymap.set("i", "jk", "<Esc>")
-vim.keymap.set("n", "<A-t>", ":term powershell<cr>")
-vim.keymap.set("n", "<A-v><A-t>", ":vs|wincmd l|term powershell<cr>")
-vim.keymap.set("n", "<A-p><A-t>", ":sp|wincmd j|term powershell<cr>")
+vim.keymap.set("n", "<A-t>", ":term \"C:/Program Files/PowerShell/7/pwsh.exe\"<cr>")
+vim.keymap.set("n", "<A-v><A-t>", ":vs|wincmd l|term \"C:/Program Files/PowerShell/7/pwsh.exe\"<cr>")
+vim.keymap.set("n", "<A-p><A-t>", ":sp|wincmd j|term \"C:/Program Files/PowerShell/7/pwsh.exe\"<cr>")
 vim.keymap.set("t", "kj", "<C-\\><C-n>")
 vim.keymap.set("t", "jk", "<C-\\><C-n>")
 
