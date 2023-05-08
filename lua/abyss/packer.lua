@@ -86,4 +86,6 @@ return require('packer').startup(function(use)
     use('Asheq/close-buffers.vim')
 
     use('nvim-telescope/telescope-fzy-native.nvim')
+
+    use({ 'toppair/peek.nvim', run = 'deno task --quiet build:fast' })
 end)
