@@ -109,15 +109,15 @@ local config = {
           staticStarThreshold = 9999;
         },
       },
---      codeGeneration = {
---        toString = {
---          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
---        },
---        hashCodeEquals = {
---          useJava7Objects = true,
---        },
---        useBlocks = true,
---      },
+      codeGeneration = {
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+        },
+        hashCodeEquals = {
+          useJava7Objects = true,
+        },
+        useBlocks = true,
+      },
       configuration = {
         runtimes = {
           {
@@ -144,10 +144,10 @@ local config = {
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
     '-Xmx4g',
---    '--add-modules=ALL-SYSTEM',
---    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
---    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
---    '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
+    '--add-modules=ALL-SYSTEM',
+    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+    '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
 
     '-jar', vim.fn.glob(home .. '/scoop/apps/jdtls/current/plugins/org.eclipse.equinox.launcher_*.jar'),
 
