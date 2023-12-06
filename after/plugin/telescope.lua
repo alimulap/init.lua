@@ -1,12 +1,16 @@
-
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+vim.keymap.set('n', '<leader>pf', function()
+    local opts = {};
+    builtin.find_files(opts)
+end, {})
 vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
-vim.keymap.set('n', '<leader>bf', builtin.buffers, {})
+vim.keymap.set('n', '<leader>bf', function ()
+    builtin.buffers({ cwd_only = false })
+end, {})
 vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
-end)
+end, {})
 
 local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
@@ -25,9 +29,8 @@ AbyssDir = function(opts)
             actions.select_default:replace(function()
                 actions.close(prompt_bufnr)
                 local selection = action_state.get_selected_entry()
-                vim.cmd('cd ' .. '~\\Abyss\\' .. selection[1])
-                vim.cmd('Explore ' .. '~\\Abyss\\' .. selection[1])
-                vim.cmd('%bd|e#|bd#')
+                vim.cmd('cd '..selection[1])
+                vim.cmd('e '..selection[1])
             end)
             return true
         end,
@@ -54,7 +57,7 @@ AbyssRef = function(opts)
     }):find()
 end
 
-vim.cmd('command! Cd lua AbyssDir()')
+vim.cmd('command! Abyss lua AbyssDir()')
 
 vim.cmd('command! Ref lua AbyssRef()')
 

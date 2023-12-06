@@ -1,0 +1,233 @@
+---- Update this path
+--local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.6.7/'
+--local codelldb_path = extension_path .. 'adapter/codelldb'
+--local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+--local this_os = vim.loop.os_uname().sysname;
+--
+---- The path in windows is different
+--if this_os:find "Windows" then
+--  codelldb_path = extension_path .. "adapter\\codelldb.exe"
+--  liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+--else
+--  -- The liblldb extension is .so for linux and .dylib for macOS
+--  liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+--end
+--
+--local opts = {
+--    tools = {
+--            -- rust-tools options
+--
+--        -- how to execute terminal commands
+--        -- options right now: termopen / quickfix / toggleterm / vimux
+--        executor = require("rust-tools.executors").termopen,
+--        -- callback to execute once rust-analyzer is done initializing the workspace
+--        -- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
+--        on_initialized = nil,
+--        -- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
+--        reload_workspace_from_cargo_toml = true,
+--        -- These apply to the default RustSetInlayHints command
+--        inlay_hints = {
+--            -- automatically set inlay hints (type hints)
+--            -- default: true
+--            auto = true,
+--            -- Only show inlay hints for the current line
+--            only_current_line = false,
+--            -- whether to show parameter hints with the inlay hints or not
+--            -- default: true
+--            show_parameter_hints = true,
+--            -- prefix for parameter hints
+--            -- default: "<-"
+--            parameter_hints_prefix = "<- ",
+--            -- prefix for all the other hints (type, chaining)
+--            -- default: "=>"
+--            other_hints_prefix = "=> ",
+--            -- whether to align to the length of the longest line in the file
+--            max_len_align = false,
+--            -- padding from the left if max_len_align is true
+--            max_len_align_padding = 1,
+--            -- whether to align to the extreme right or not
+--            right_align = false,
+--            -- padding from the right if right_align is true
+--            right_align_padding = 7,
+--            -- The color of the hints
+--            highlight = "Comment",
+--        },
+--        -- options same as lsp hover / vim.lsp.util.open_floating_preview()
+--        hover_actions = {
+--            -- the border that is used for the hover window
+--            -- see vim.api.nvim_open_win()
+--            border = {
+--                { "╭", "FloatBorder" },
+--                { "─", "FloatBorder" },
+--                { "╮", "FloatBorder" },
+--                { "│", "FloatBorder" },
+--                { "╯", "FloatBorder" },
+--                { "─", "FloatBorder" },
+--                { "╰", "FloatBorder" },
+--                { "│", "FloatBorder" },
+--            },
+--            -- Maximal width of the hover window. Nil means no max.
+--            max_width = nil,
+--            -- Maximal height of the hover window. Nil means no max.
+--            max_height = nil,
+--            -- whether the hover action window gets automatically focused
+--            -- default: false
+--            auto_focus = false,
+--        },
+--        -- settings for showing the crate graph based on graphviz and the dot
+--        -- command
+--        crate_graph = {
+--            -- Backend used for displaying the graph
+--            -- see: https://graphviz.org/docs/outputs/
+--            -- default: x11
+--            backend = "x11",
+--            -- where to store the output, nil for no output stored (relative
+--            -- path from pwd)
+--            -- default: nil
+--            output = nil,
+--            -- true for all crates.io and external crates, false only the local
+--            -- crates
+--            -- default: true
+--            full = true,
+--            -- List of backends found on: https://graphviz.org/docs/outputs/
+--            -- Is used for input validation and autocompletion
+--            -- Last updated: 2021-08-26
+--            enabled_graphviz_backends = {
+--                "bmp",
+--                "cgimage",
+--                "canon",
+--                "dot",
+--                "gv",
+--                "xdot",
+--                "xdot1.2",
+--                "xdot1.4",
+--                "eps",
+--                "exr",
+--                "fig",
+--                "gd",
+--                "gd2",
+--                "gif",
+--                "gtk",
+--                "ico",
+--                "cmap",
+--                "ismap",
+--                "imap",
+--                "cmapx",
+--                "imap_np",
+--                "cmapx_np",
+--                "jpg",
+--                "jpeg",
+--                "jpe",
+--                "jp2",
+--                "json",
+--                "json0",
+--                "dot_json",
+--                "xdot_json",
+--                "pdf",
+--                "pic",
+--                "pct",
+--                "pict",
+--                "plain",
+--                "plain-ext",
+--                "png",
+--                "pov",
+--                "ps",
+--                "ps2",
+--                "psd",
+--                "sgi",
+--                "svg",
+--                "svgz",
+--                "tga",
+--                "tiff",
+--                "tif",
+--                "tk",
+--                "vml",
+--                "vmlz",
+--                "wbmp",
+--                "webp",
+--                "xlib",
+--                "x11",
+--            },
+--        },
+--    },
+--    -- all the opts to send to nvim-lspconfig
+--    -- these override the defaults set by rust-tools.nvim
+--    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+--    server = {
+--        -- standalone file support
+--        -- setting it to false may improve startup time
+--        standalone = true,
+--        on_attach = function(client, bufnr)
+--            local opts = { buffer = bufnr, remap = false }
+--            --- Guard against servers without the signatureHelper capability
+--            if client.server_capabilities.signatureHelpProvider then
+--                require('lsp-overloads').setup(client, {
+--                    -- UI options are mostly the same as those passed to vim.lsp.util.open_floating_preview
+--                    ui = {
+--                        border = "single", -- The border to use for the signature popup window. Accepts same border values as |nvim_open_win()|.
+--                        height = nil,  -- Height of the signature popup window (nil allows dynamic sizing based on content of the help)
+--                        width = nil,   -- Width of the signature popup window (nil allows dynamic sizing based on content of the help)
+--                        wrap = true,   -- Wrap long lines
+--                        wrap_at = nil, -- Character to wrap at for computing height when wrap enabled
+--                        max_width = nil, -- Maximum signature popup width
+--                        max_height = nil, -- Maximum signature popup height
+--                        -- Events that will close the signature popup window: use {"CursorMoved", "CursorMovedI", "InsertCharPre"} to hide the window when typing
+--                        close_events = { "CursorMoved", "BufHidden", "InsertLeave" },
+--                        focusable = true,                   -- Make the popup float focusable
+--                        focus = false,                      -- If focusable is also true, and this is set to true, navigating through overloads will focus into the popup window (probably not what you want)
+--                        offset_x = 0,                       -- Horizontal offset of the floating window relative to the cursor position
+--                        offset_y = 0,                       -- Vertical offset of the floating window relative to the cursor position
+--                        floating_window_above_cur_line = false, -- Attempt to float the popup above the cursor position
+--                        -- (note, if the height of the float would be greater than the space left above the cursor, it will default
+--                        -- to placing the float below the cursor. The max_height option allows for finer tuning of this)
+--                    },
+--                    keymaps = {
+--                        next_signature = "<C-j>",
+--                        previous_signature = "<C-k>",
+--                        next_parameter = "<C-l>",
+--                        previous_parameter = "<C-h>",
+--                        close_signature = "<A-s>"
+--                    },
+--                    display_automatically = false
+--                })
+--            end
+--            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+--            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+--            vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+--            vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+--            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+--            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+--            vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+--            vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+--            vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+--            --vim.keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end, opts)
+--
+--            -- Hover actions
+--            vim.keymap.set("n", "<C-space>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
+--            vim.keymap.set("n", "<C-k>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
+--            -- Code action groups
+--            vim.keymap.set("n", "<Leader>a", require("rust-tools").code_action_group.code_action_group, { buffer = bufnr })
+--        end,
+--        --format_on_save = {
+--        --    format_opts = {
+--        --        async = false,
+--        --        timeout_ms = 10000,
+--        --    },
+--        --    servers = {
+--        --        ['lua_ls'] = { 'lua' },
+--        --        ['rust_analyzer'] = { 'rust' },
+--        --        -- if you have a working setup with null-ls
+--        --        -- you can specify filetypes it can format.
+--        --        -- ['null-ls'] = {'javascript', 'typescript'},
+--        --    }
+--        --},
+--    }, -- rust-analyzer options
+--    -- debugging stuff
+--    dap = {
+--        adapter = require('rust-tools.dap').get_codelldb_adapter(
+--            codelldb_path, liblldb_path)
+--    }
+--}
+--
+--
+--require('rust-tools').setup(opts)

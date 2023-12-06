@@ -33,15 +33,28 @@ vim.keymap.set("n", "\\.", "<C-w>10<")
 
 vim.keymap.set("i", "kj", "<Esc>")
 vim.keymap.set("i", "jk", "<Esc>")
-vim.keymap.set("n", "<A-t>", ":term \"C:/Program Files/PowerShell/7/pwsh.exe\"<cr>")
+--vim.keymap.set("n", "<A-t>", ":term \"C:/Program Files/PowerShell/7/pwsh.exe\"<cr>")
 vim.keymap.set("n", "<A-v><A-t>", ":vs|wincmd l|term \"C:/Program Files/PowerShell/7/pwsh.exe\"<cr>")
 vim.keymap.set("n", "<A-p><A-t>", ":sp|wincmd j|term \"C:/Program Files/PowerShell/7/pwsh.exe\"<cr>")
-vim.keymap.set("t", "kj", "<C-\\><C-n>")
-vim.keymap.set("t", "jk", "<C-\\><C-n>")
 
 vim.keymap.set("n", "\\0", "<End>")
 vim.keymap.set("n", "\\1", "<End>")
 
 vim.keymap.set("n", "<C-B><C-D>", ":%bd|e#|bd#<CR>")
+vim.keymap.set("n", "<A-R>", ":source $MYVIMRC/lua/abyss/init.lua<CR>")
 
+vim.keymap.set("n", "<C-t>", ":tabnew|e ~/Abyss/<CR>")
+--vim.keymap.set("n", "<C-f><C-t>", ":ToggleTerm direction=float<cr>")
+vim.keymap.set("n", "<A-t>", ":ToggleTerm direction=float<cr>i")
+vim.keymap.set("n", "<C-h><C-t>", ":ToggleTerm direction=vertical size=50<cr>")
+
+vim.keymap.set("n", "<C-o>", ":Abyss<cr>")
+
+vim.keymap.set("t", "kj", "<C-\\><C-n>")
+vim.keymap.set("t", "jk", "<C-\\><C-n>")
+vim.keymap.set("t", "<C-PageUp>", ":tabp")
+vim.keymap.set("t", "<C-PageDown>", ":tabn")
+
+vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("\\<CR>")')
+vim.g.copilot_no_tab_map = true
 
