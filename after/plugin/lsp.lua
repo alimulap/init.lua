@@ -32,6 +32,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-k>'] = cmp.mapping.close(),
+    ['<C-l>'] = cmp.mapping.close_docs(),
+    -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
 })
 
 lsp.setup_nvim_cmp({
@@ -108,4 +111,4 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
-require("lsp-inlayhints").setup()
+-- require("lsp-inlayhints").setup()
