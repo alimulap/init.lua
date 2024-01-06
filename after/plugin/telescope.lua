@@ -57,7 +57,6 @@ AbyssRef = function(opts)
     }):find()
 end
 
-
 function SelectDirectory(starting_dir)
     local opts = {}
     starting_dir = starting_dir or "abyss"
