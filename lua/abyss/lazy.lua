@@ -31,9 +31,9 @@ require("lazy").setup({
     {
 		'folke/tokyonight.nvim',
 		name = 'tokyonight',
-		config = function()
-			vim.cmd('colorscheme tokyonight-moon')
-		end
+		--config = function()
+		--	--vim.cmd('colorscheme tokyonight-night')
+		--end
 	},
     {
         'xiyaowong/nvim-transparent'

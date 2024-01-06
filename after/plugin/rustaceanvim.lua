@@ -76,6 +76,7 @@ vim.g.rustaceanvim =  {
         on_attach = function(client, bufnr)
             --vim.lsp.inlay_hint(bufnr, true)
             require("lsp-inlayhints").on_attach(client, bufnr)
+            require("lsp-inlayhints").show()
             local opts = { buffer = bufnr, remap = false }
             --- Guard against servers without the signatureHelper capability
             if client.server_capabilities.signatureHelpProvider then
@@ -120,6 +121,7 @@ vim.g.rustaceanvim =  {
             vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
             --vim.keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end, opts)
             vim.keymap.set("n", "<C-f>", function() vim.lsp.buf.format() end, opts)
+            vim.keymap.set("n", "<leader>a", function() vim.cmd.RustLsp('codeAction') end, { silent = true, buffer = bufnr })
 
             require "lsp_signature".on_attach(cfg, bufnr)
         end,

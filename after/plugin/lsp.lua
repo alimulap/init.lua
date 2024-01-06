@@ -6,8 +6,8 @@ local lsp = require('lsp-zero').preset({
 })
 
 lsp.ensure_installed({
-    --'rust_analyzer',
-    'clangd',
+    'rust_analyzer',
+    --'clangd',
 })
 
 lsp.skip_server_setup({
@@ -46,6 +46,8 @@ lsp.nvim_workspace()
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
+    require("lsp-inlayhints").on_attach(client, bufnr)
+    require("lsp-inlayhints").show()
     --- Guard against servers without the signatureHelper capability
     if client.server_capabilities.signatureHelpProvider then
         require('lsp-overloads').setup(client, {
@@ -89,6 +91,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     --vim.keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end, opts)
     vim.keymap.set("n", "<C-f>", function() vim.lsp.buf.format() end, opts)
+
+    vim.keymap.set("n", "<C-i>", function() require("lsp-inlayhints").toggle() end, opts)
 end)
 
 --lsp.format_on_save({
@@ -111,4 +115,36 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
--- require("lsp-inlayhints").setup()
+require("lsp-inlayhints").setup({
+  inlay_hints = {
+    parameter_hints = {
+      show = true,
+      prefix = "<- ",
+      separator = ", ",
+      remove_colon_start = false,
+      remove_colon_end = true,
+    },
+    type_hints = {
+      -- type and other hints
+      show = true,
+      prefix = "",
+      separator = ", ",
+      remove_colon_start = false,
+      remove_colon_end = false,
+    },
+    only_current_line = false,
+    -- separator between types and parameter hints. Note that type hints are
+    -- shown before parameter
+    labels_separator = "  ",
+    -- whether to align to the length of the longest line in the file
+    max_len_align = false,
+    -- padding from the left if max_len_align is true
+    max_len_align_padding = 1,
+    -- highlight group
+    highlight = "LspInlayHint",
+    -- virt_text priority
+    priority = 0,
+  },
+  enabled_at_startup = true,
+  debug_mode = false,
+})

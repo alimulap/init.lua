@@ -42,9 +42,13 @@ vim.cmd('command! Alcn vs | wincmd l | edit ~/AppData/Roaming/alacritty/alacritt
 
 vim.cmd('command! BD %bd|e#|bd#')
 
-vim.cmd('command! Myvimrc cd $MYVIMRC | e $MYVIMRC')
+vim.cmd('command! Db bd')
+
+vim.cmd('command! Myvimrc cd ~/.config/nvim/ | e ~/.config/nvim/')
 
 vim.cmd('command! Openthis !pwsh -command "open \'%:p\'"')
 
 vim.cmd('command! HTML TOhtml | w | bd')
+
+vim.cmd('command! CD lua ChangeDirectory()')
 
